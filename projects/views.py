@@ -7,4 +7,4 @@ from .models import Project
 class ProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    # permission_classes = (permissions.IsAuthenticated,)
