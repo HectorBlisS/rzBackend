@@ -13,7 +13,7 @@ class Project(models.Model):
 	photo = models.ImageField(blank=True, null=True)
 	reached = models.DecimalField(decimal_places=2,  max_digits=6, null=True, blank=True)
 	video = models.URLField(null=True, blank=True)
-	followers = models.ManyToManyField(User, related_name='following')
+	followers = models.ManyToManyField(User, related_name='following', blank=True)
 
 
 	def __str__(self):
