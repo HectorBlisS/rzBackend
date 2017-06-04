@@ -5,16 +5,19 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
 
-    user = models.OneToOneField(User)
-    calle = models.CharField(max_length=100)
-    numero = models.IntegerField()
-    colonia = models.CharField(max_length=100)
-    cp = models.IntegerField()
-    ciudad = models.CharField(max_length=100)
-    estado = models.CharField(max_length=100)
-    ocupacion = models.CharField(max_length=100)
-    telefono = models.IntegerField()
-    genero = models.CharField(max_length=100)
+    user = models.OneToOneField(User, blank=True, null=True)
+    edad = models.IntegerField(blank=True, null=True)
+    calle = models.CharField(max_length=100, blank=True, null=True)
+    numero = models.IntegerField(blank=True, null=True)
+    colonia = models.CharField(max_length=100, blank=True, null=True)
+    cp = models.IntegerField(blank=True, null=True)
+    ciudad = models.CharField(max_length=100, blank=True, null=True)
+    estado = models.CharField(max_length=100, blank=True, null=True)
+    ocupacion = models.CharField(max_length=100, blank=True, null=True)
+    telefono = models.IntegerField(blank=True, null=True)
+    genero = models.CharField(max_length=100, blank=True, null=True)
+    email2 = models.EmailField(blank=True, null=True)
+    background = models.ImageField(upload_to="backImages", blank="true", null="true")
 
     def __str__(self):
         return self.user
