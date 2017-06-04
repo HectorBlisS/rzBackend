@@ -5,12 +5,14 @@ from projects import urls as projectsUrls
 from rest_framework import routers
 from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet
+from projects.views import RewardViewSet
 
 
 
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet)
 router.register(r'profiles', ProfileViewSet)
+router.register(r'rewards', RewardViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
