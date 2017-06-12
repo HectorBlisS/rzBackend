@@ -2,6 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
+class Category(models.Model):
+	name = models.CharField(max_length=140)
+	slug = models.SlugField(max_length=250)
+
+
+	def __str__(self):
+		return self.name
+
+
 class Project(models.Model):
 	STATUSCHOICES = (
 			('editing', 'Editando'),
@@ -23,10 +33,15 @@ class Project(models.Model):
 	followers = models.ManyToManyField(User, related_name='following', blank=True)
 	validated = models.BooleanField(default=False)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
+	category = models.ManyToManyField(Category, related_name='projects')
 
 
 	def __str__(self):
 		return self.name
+
+
+
+
 
 class Reward(models.Model):
 	project = models.ForeignKey(Project, related_name='rewards')
