@@ -6,8 +6,12 @@ from .models import Project, Reward
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import (PageNumberPagination, LimitOffsetPagination,)
 
+class OwnerMixin(object):
+    def get_queryset(self):
+        qs = super(OwnerMixin, self).get_queryset()
+        return qs.filter(author=self.request.user)
 
-class ProjectViewSet(viewsets.ModelViewSet):
+class ProjectViewSet(OwnerMixin, viewsets.ModelViewSet):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     paginate_by = 10

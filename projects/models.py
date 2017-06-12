@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 
 
 class Project(models.Model):
+	STATUSCHOICES = (
+			('editing', 'Editando'),
+			('review', 'Revisando'),
+			('rejected', 'Rechazado'),
+			('approved', 'Aprobado')
+		)
+
 	author = models.ForeignKey(User, related_name='projects')
 	name = models.CharField(max_length=140)
 	goal = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
@@ -15,6 +22,7 @@ class Project(models.Model):
 	video = models.URLField(null=True, blank=True)
 	followers = models.ManyToManyField(User, related_name='following', blank=True)
 	validated = models.BooleanField(default=False)
+	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
 
 
 	def __str__(self):

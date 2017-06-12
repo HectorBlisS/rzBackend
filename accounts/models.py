@@ -20,4 +20,4 @@ class Profile(models.Model):
     background = models.ImageField(upload_to="backImages", blank="true", null="true")
 
     def __str__(self):
-        return self.user
+        return self.user.username
