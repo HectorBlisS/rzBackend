@@ -3,7 +3,7 @@ from rest_framework import permissions
 from rest_framework import viewsets
 from .serializers import ProjectSerializer, RewardSerializer
 from .models import Project, Reward
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
 from rest_framework.pagination import (PageNumberPagination, LimitOffsetPagination,)
 
 class OwnerMixin(object):
@@ -29,3 +29,8 @@ class PaginatedListView(ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     pagination_class = LimitOffsetPagination
+
+
+class DetailProjectView(RetrieveUpdateAPIView):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
