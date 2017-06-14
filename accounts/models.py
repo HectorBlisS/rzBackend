@@ -19,6 +19,7 @@ class Profile(models.Model):
     genero = models.CharField(max_length=100, blank=True, null=True)
     email2 = models.EmailField(blank=True, null=True)
     background = models.ImageField(upload_to="backImages", blank="true", null="true")
+    canPublish = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
