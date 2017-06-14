@@ -14,7 +14,7 @@ class GetMyProfile(APIView):
 	permission_classes = (permissions.IsAuthenticated,)
 	def get(self, request):
 		
-		profile, created = Profile.objects.get_or_create(user=request.user.id)
+		profile, created = Profile.objects.get_or_create(user=request.user)
 		serializer = ProfileSerializer(profile, many=False)
 		return Response(serializer.data)
 
