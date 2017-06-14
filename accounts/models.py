@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
 
-    user = models.OneToOneField(User, blank=True, null=True)
+    user = models.OneToOneField(User)
     edad = models.IntegerField(blank=True, null=True)
     calle = models.CharField(max_length=100, blank=True, null=True)
     numero = models.IntegerField(blank=True, null=True)
@@ -17,7 +17,7 @@ class Profile(models.Model):
     telefono = models.IntegerField(blank=True, null=True)
     genero = models.CharField(max_length=100, blank=True, null=True)
     email2 = models.EmailField(blank=True, null=True)
-    background = models.ImageField(upload_to="backImages", blank="true", null="true")
+    background = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return self.user.username
