@@ -28,8 +28,26 @@ class GetMyProfile(APIView):
 		profile, created = Profile.objects.get_or_create(user=request.user)
 		# serializer = ProfileSerializer(profile, many=False)
 		# return Response(serializer.data)
+
 		serializer = UserSerializer(request.user)
 		return Response(serializer.data)
+
+	def post(self, request):
+		profile, created = Profile.objects.get_or_create(user=request.user)
+		# serializer = ProfileSerializer(profile, many=False)
+		# return Response(serializer.data)
+
+		print(request.data['photoURL'])
+
+		if request.data['photoURL']:
+			profile.photoURL = request.data['photoURL']
+			profile.save()
+
+		
+
+		serializer = UserSerializer(request.user)
+		return Response(serializer.data)
+
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
