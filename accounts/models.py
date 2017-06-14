@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
 
     user = models.OneToOneField(User, blank=True, null=True)
+    photoURL = models.URLField(blank=True, null=True)
     edad = models.IntegerField(blank=True, null=True)
     calle = models.CharField(max_length=100, blank=True, null=True)
     numero = models.IntegerField(blank=True, null=True)

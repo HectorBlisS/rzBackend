@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Project, Reward, Category
-
+from accounts.serializers import UserSerializer
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -17,6 +17,7 @@ class RewardSerializer(serializers.ModelSerializer):
 class ProjectSerializer(serializers.ModelSerializer):
 	rewards = RewardSerializer(many=True, read_only=True)
 	category = CategorySerializer(read_only=True, many=True)
+	author = UserSerializer(read_only=True)
 	class Meta:
 		model = Project
 		fields = '__all__'
