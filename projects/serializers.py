@@ -23,4 +23,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 	def create(self, validated_data):
-		return Project.objects.create(**validated_data)
+		c = Category.objects.all().filter(name='salud')
+		p = Project.objects.create(**validated_data)
+		p.category = c
+		p.save()
+
+		return p
