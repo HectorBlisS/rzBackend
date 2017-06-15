@@ -34,7 +34,7 @@ class Project(models.Model):
 	followers = models.ManyToManyField(User, related_name='following', blank=True)
 	validated = models.BooleanField(default=False)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
-	category = models.ManyToManyField(Category, related_name='projects')
+	category = models.ManyToManyField(Category, related_name='projects', default="salud")
 
 
 	def __str__(self):
