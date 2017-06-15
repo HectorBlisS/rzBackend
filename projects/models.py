@@ -40,6 +40,9 @@ class Project(models.Model):
 	def __str__(self):
 		return self.name
 
+	def setDefaultCategory(self):
+		return Category.objects.all().filter(name='salud')
+
 
 
 
