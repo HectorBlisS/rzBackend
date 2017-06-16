@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'social_django',
     'rest_framework_social_oauth2',
-    'corsheaders'
+    'corsheaders',
+    'payments'
 ]
 
 MIDDLEWARE = [
@@ -161,8 +162,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Facebook configuration
-SOCIAL_AUTH_FACEBOOK_KEY = '1272028476246824'
-SOCIAL_AUTH_FACEBOOK_SECRET = '176d3f726878baf2d30c15faa5aed153'
+SOCIAL_AUTH_FACEBOOK_KEY = '1865855136964814'
+SOCIAL_AUTH_FACEBOOK_SECRET = '15500619d33f0d0900d44b95a01faced'
 
 # Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
@@ -190,3 +191,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+
+
+# SOCIAL_AUTH_PIPELINE = (
+#     'social.pipeline.social_auth.social_details',
+#     'social.pipeline.social_auth.social_uid',
+#     'social.pipeline.social_auth.auth_allowed',
+#     'social.pipeline.social_auth.social_user',
+#     'social.pipeline.user.get_username',
+#     'social.pipeline.user.create_user',
+#     'accounts.pipelines.save_profile_picture',  # <--- set the import-path to the function
+#     'social.pipeline.social_auth.associate_user',
+#     'social.pipeline.social_auth.load_extra_data',
+#     'social.pipeline.user.user_details'
+# )
