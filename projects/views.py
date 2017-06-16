@@ -8,9 +8,8 @@ from rest_framework.pagination import (PageNumberPagination, LimitOffsetPaginati
 
 class OwnerMixin(object):
     def get_queryset(self):
-        # qs = super(OwnerMixin, self).get_queryset()
-        # return qs.filter(author=self.request.user)
-        pass
+        qs = super(OwnerMixin, self).get_queryset()
+        return qs.filter(author=self.request.user)
 
 class ProjectViewSet(OwnerMixin, viewsets.ModelViewSet):
     queryset = Project.objects.all()
