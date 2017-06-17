@@ -32,7 +32,7 @@ class Project(models.Model):
 	reached = models.DecimalField(decimal_places=2,  max_digits=6, null=True, blank=True)
 	video = models.URLField(null=True, blank=True)
 	followers = models.ManyToManyField(User, related_name='following', blank=True)
-	validated = models.BooleanField(default=False)
+	validated = models.BooleanField(default=True)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
 	category = models.ManyToManyField(Category, related_name='projects')
 

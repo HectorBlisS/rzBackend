@@ -31,6 +31,10 @@ class PaginatedListView(ListAPIView):
     serializer_class = ProjectSerializer
     pagination_class = LimitOffsetPagination
 
+    def get_queryset(self):
+        qs = super(PaginatedListView, self).get_queryset()
+        return qs.filter(validated=True)
+
 
 class DetailProjectView(RetrieveUpdateAPIView):
     queryset = Project.objects.all()
