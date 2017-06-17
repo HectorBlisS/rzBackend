@@ -1,3 +1,7 @@
+from django.views.static import serve
+from django.conf import settings
+
+
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_social_oauth2 import urls as restUrls
@@ -25,5 +29,10 @@ urlpatterns = [
     	GetMyProfile.as_view()),
     
 
-    url(r'^', include(router.urls))
+    url(r'^', include(router.urls)),
+    url(
+        regex=r'^media/(?P<path>.*)$',
+        view=serve,
+        kwargs={'document_root':settings.MEDIA_ROOT}
+        ),
 ]
