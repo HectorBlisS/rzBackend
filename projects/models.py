@@ -34,13 +34,13 @@ class Project(models.Model):
 	followers = models.ManyToManyField(User, related_name='following', blank=True)
 	validated = models.BooleanField(default=False)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
-	category = models.ManyToManyField(Category, related_name='projects', default=1)
+	category = models.ManyToManyField(Category, related_name='projects')
 
 
 	def __str__(self):
 		return self.name
 
-	def setDefaultCategory(self):
+	def set_default_category(self):
 		return Category.objects.all().filter(name='salud')
 
 
