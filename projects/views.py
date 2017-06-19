@@ -43,7 +43,7 @@ class DetailProjectView(RetrieveUpdateAPIView):
     
 
     def get_queryset(self):
-        qs = super(PaginatedListView, self).get_queryset()
+        qs = super(DetailProjectView, self).get_queryset()
         return qs.filter(validated=True)
 
 class PreviewDetailProjectView(RetrieveAPIView):
