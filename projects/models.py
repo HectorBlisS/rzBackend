@@ -23,6 +23,7 @@ class Project(models.Model):
 	author = models.ForeignKey(User, related_name='projects')
 	photoURL = models.URLField(null=True, blank=True)
 	name = models.CharField(max_length=140)
+	slug = models.SlugField(max_length=240, null=True, blank=True)
 	goal = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
 	description = models.TextField(null=True, blank=True)
 	created = models.DateTimeField(null=True, blank=True)
@@ -54,7 +55,7 @@ class Reward(models.Model):
 	amount = models.DecimalField(decimal_places=2, max_digits=6)
 	date = models.DateField(blank=True, null=True)
 	quantity = models.IntegerField(blank=True, null=True)
-	
+
 
 
 	def __str__(self):
