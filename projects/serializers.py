@@ -21,6 +21,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Project
 		fields = '__all__'
+		lookup_field = 'slug'
 
 	def create(self, validated_data):
 		c = Category.objects.all().filter(name='salud')

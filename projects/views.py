@@ -39,6 +39,7 @@ class PaginatedListView(ListAPIView):
 class DetailProjectView(RetrieveUpdateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    lookup_field = 'slug'
 
     def get_queryset(self):
         qs = super(PaginatedListView, self).get_queryset()
@@ -47,6 +48,7 @@ class DetailProjectView(RetrieveUpdateAPIView):
 class PreviewDetailProjectView(RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+    lookup_field = 'slug'
 
 
 
