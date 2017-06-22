@@ -9,8 +9,8 @@ from projects import urls as projectsUrls
 from rest_framework import routers
 from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet, UserViewSet, GetMyProfile
-from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects
 
+from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects
 
 
 router = routers.DefaultRouter()
@@ -29,7 +29,9 @@ urlpatterns = [
     	GetMyProfile.as_view()),
     url(r'^preview/(?P<pk>\d+)/$', 
         PreviewDetailProjectView.as_view()),
+
     url(r'^userprojects/(?P<pk>\d+)/$', UserProjects.as_view()),
+
 
     
 

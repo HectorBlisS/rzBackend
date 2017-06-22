@@ -51,6 +51,7 @@ class PreviewDetailProjectView(RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
+
 class UserProjects(ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -62,7 +63,6 @@ class UserProjects(ListAPIView):
         qs = super(UserProjects, self).get_queryset()
         return qs.filter(author=user)
     
-
 
 
 
