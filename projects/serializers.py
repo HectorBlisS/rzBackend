@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, Reward, Category
+from .models import Project, Reward, Category, Observaciones
 from accounts.serializers import UserSerializer
 
 
@@ -14,8 +14,14 @@ class RewardSerializer(serializers.ModelSerializer):
 		model = Reward
 		fields = '__all__'
 
+class ObservationSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Observaciones
+		fields = '__all__'
+
 class ProjectSerializer(serializers.ModelSerializer):
 	rewards = RewardSerializer(many=True, read_only=True)
+	observation = ObservationSerializer(many=True, read_only=True)
 	category = CategorySerializer(read_only=True, many=True)
 	author = UserSerializer(read_only=True, default=serializers.CurrentUserDefault())
 	class Meta:

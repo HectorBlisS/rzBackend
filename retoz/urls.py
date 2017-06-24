@@ -10,7 +10,7 @@ from rest_framework import routers
 from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet, UserViewSet, GetMyProfile
 
-from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects
+from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet
 
 
 router = routers.DefaultRouter()
@@ -18,6 +18,7 @@ router.register(r'projects', ProjectViewSet)
 router.register(r'profiles', ProfileViewSet)
 router.register(r'rewards', RewardViewSet)
 router.register(r'users', UserViewSet)
+router.register(r'observations', ObservationsViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

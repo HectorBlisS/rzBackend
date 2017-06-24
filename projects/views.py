@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework import viewsets
-from .serializers import ProjectSerializer, RewardSerializer
-from .models import Project, Reward
+from .serializers import ProjectSerializer, RewardSerializer, ObservationSerializer
+from .models import Project, Reward, Observaciones
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, RetrieveAPIView
 from rest_framework.pagination import (PageNumberPagination, LimitOffsetPagination,)
 from django.contrib.auth.models import User
@@ -63,7 +63,9 @@ class UserProjects(ListAPIView):
         qs = super(UserProjects, self).get_queryset()
         return qs.filter(author=user)
     
-
+class ObservationsViewSet(viewsets.ModelViewSet):
+    queryset = Observaciones.objects.all()
+    serializer_class = ObservationSerializer
 
 
 

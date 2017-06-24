@@ -12,6 +12,7 @@ class Category(models.Model):
 		return self.name
 
 
+
 class Project(models.Model):
 	STATUSCHOICES = (
 			('editing', 'Editando'),
@@ -60,4 +61,12 @@ class Reward(models.Model):
 
 	def __str__(self):
 		return "{} de {}".format(self.title, self.project)
+
+
+class Observaciones(models.Model):
+	project = models.ForeignKey(Project, related_name="observation")
+	text = models.TextField()
+
+	def __str__(self):
+		return "observation of {}".format(self.project)
 
