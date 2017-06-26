@@ -43,6 +43,9 @@ class GetMyProfile(APIView):
 			profile.photoURL = request.data['photoURL']
 			profile.save()
 
+		if request.data['uid']:
+			profile.uid = request.data['uid']
+			profile.save()
 		
 
 		serializer = UserSerializer(request.user)
