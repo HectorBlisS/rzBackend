@@ -8,7 +8,7 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, blank=True, null=True)
     photoURL = models.URLField(blank=True, null=True)
-    uid = models.CharField(blank=True, null=True)
+    uid = models.CharField(blank=True, null=True, max_length=140)
 
     edad = models.IntegerField(blank=True, null=True)
     calle = models.CharField(max_length=100, blank=True, null=True)
