@@ -21,7 +21,7 @@ class Profile(models.Model):
     telefono = models.CharField(max_length=140,blank=True, null=True)
     genero = models.CharField(max_length=100, blank=True, null=True)
     email2 = models.EmailField(blank=True, null=True)
-
+    
     background = models.IntegerField(blank=True, null=True)
 
     canPublish = models.BooleanField(default=False)

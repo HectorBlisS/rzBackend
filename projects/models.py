@@ -37,6 +37,7 @@ class Project(models.Model):
 	validated = models.BooleanField(default=True)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
 	category = models.ManyToManyField(Category, related_name='projects')
+	summary = models.TextField(blank=True, null=True)
 
 
 	def __str__(self):
