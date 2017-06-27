@@ -11,7 +11,7 @@ from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet, UserViewSet, GetMyProfile
 
 from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet
-
+from payments.views import ExecutePay
 
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet)
@@ -32,6 +32,7 @@ urlpatterns = [
         PreviewDetailProjectView.as_view()),
 
     url(r'^userprojects/(?P<pk>\d+)/$', UserProjects.as_view()),
+    url(r'^pay/$', ExecutePay.as_view() ),
 
 
     
