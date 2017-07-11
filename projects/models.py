@@ -30,7 +30,7 @@ class Project(models.Model):
 	created = models.DateTimeField(null=True, blank=True)
 	publish = models.DateTimeField(null=True, blank=True)
 	finish = models.DateTimeField(null=True, blank=True)
-	photo = models.URLField(blank=True, null=True)
+	photo = models.URLField(max_length=500,blank=True, null=True)
 	reached = models.DecimalField(decimal_places=2,  max_digits=6, null=True, blank=True)
 	video = models.URLField(null=True, blank=True)
 	followers = models.ManyToManyField(User, related_name='following', blank=True)
