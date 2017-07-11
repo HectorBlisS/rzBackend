@@ -25,19 +25,19 @@ class Project(models.Model):
 	photoURL = models.URLField(null=True, blank=True)
 	name = models.CharField(max_length=140)
 	slug = models.SlugField(max_length=240, null=True, blank=True)
-	goal = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+	goal = models.DecimalField(decimal_places=2, max_digits=8, blank=True, null=True)
 	description = models.TextField(null=True, blank=True)
 	created = models.DateTimeField(null=True, blank=True)
 	publish = models.DateTimeField(null=True, blank=True)
 	finish = models.DateTimeField(null=True, blank=True)
-	photo = models.ImageField(blank=True, null=True)
+	photo = models.URLField(blank=True, null=True)
 	reached = models.DecimalField(decimal_places=2,  max_digits=6, null=True, blank=True)
 	video = models.URLField(null=True, blank=True)
 	followers = models.ManyToManyField(User, related_name='following', blank=True)
 	validated = models.BooleanField(default=True)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
 	category = models.ManyToManyField(Category, related_name='projects')
-	summary = models.CharField(max_length=140, blank=True, null=True)
+	summary = models.CharField(max_length=140, 	blank=True, null=True)
 
 
 	def __str__(self):
