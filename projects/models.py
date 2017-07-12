@@ -13,6 +13,8 @@ class Category(models.Model):
 
 
 
+
+
 class Project(models.Model):
 	STATUSCHOICES = (
 			('editing', 'Editando'),
@@ -33,7 +35,7 @@ class Project(models.Model):
 	photo = models.ImageField(blank=True, null=True)
 	reached = models.DecimalField(decimal_places=2,  max_digits=6, null=True, blank=True)
 	video = models.URLField(null=True, blank=True)
-	followers = models.ManyToManyField(User, related_name='following', blank=True)
+	followers = models.ManyToManyField(User, through="Follow", blank=True, symmetrical=False)
 	validated = models.BooleanField(default=True)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
 	category = models.ManyToManyField(Category, related_name='projects')
@@ -46,6 +48,19 @@ class Project(models.Model):
 	def set_default_category(self):
 		return Category.objects.all().filter(name='salud')
 
+
+
+
+class Follow(models.Model):
+	user_from = models.ForeignKey(User, related_name='rel_from_set')
+	project = models.ForeignKey(Project, related_name='rel_to_set')
+	created = models.DateTimeField(auto_now_add=True, db_index=True)
+
+	class Meta:
+		ordering = ('-created',)
+
+	def __str__(self):
+		return '{} sigue a {}'.format(self.user_from, self.project)
 
 
 
@@ -70,4 +85,13 @@ class Observaciones(models.Model):
 
 	def __str__(self):
 		return "observation of {}".format(self.project)
+
+class Updates(models.Model):
+	project = models.ForeignKey(Project, related_name='updates')
+	author = models.ForeignKey(User, related_name='updater')
+	update = models.CharField(max_length=140, null=True, blank=True)
+	image = models.URLField(null=True, blank=True)
+
+	def __str__(self):
+		return "update of {}".format(self.project)
 
