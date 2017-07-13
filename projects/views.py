@@ -71,6 +71,16 @@ class UpdatesViewSet(viewsets.ModelViewSet):
     queryset = Updates.objects.all()
     serializer_class = UpdateSerializer
 
+class ProjectUpdates(ListAPIView):
+    queryset = Updates.objects.all()
+    serializer_class = UpdateSerializer
+    pagination_class = LimitOffsetPagination
+
+    def get_queryset(self, project):
+        
+        qs = super(ProjectUpdates, self).get_queryset()
+        return qs.filter(project=project)
+
 class UserUpdates(ListAPIView):
     queryset = Updates.objects.all()
     serializer_class = UpdateSerializer
