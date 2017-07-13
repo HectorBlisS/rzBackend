@@ -34,7 +34,6 @@ urlpatterns = [
 
     url(r'^userprojects/(?P<pk>\d+)/$', UserProjects.as_view()),
     url(r'^userupdates/$', UserUpdates.as_view()),
-    url(r'^proupdates/$',ProjectUpdates.as_view()),
     url(r'^pay/$', ExecutePay.as_view() ),
     url(r'^follow/$', follow_project),
 
