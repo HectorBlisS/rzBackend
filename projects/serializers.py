@@ -20,7 +20,7 @@ class ObservationSerializer(serializers.ModelSerializer):
 		model = Observaciones
 		fields = '__all__'
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectTwoSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Project
 		fields = ['name', 'id', 'photoURL']
@@ -32,9 +32,9 @@ class ProjectSerializer(serializers.ModelSerializer):
 # 		model = Follow
 # 		fields = '__all__'
 
+
 class UpdateSerializer(serializers.ModelSerializer):
-	project = ProjectSerializer(read_only=True)
-	
+	updates = ProjectTwoSerializer(read_only=True)
 	class Meta:
 		model = Updates
 		fields = '__all__'
