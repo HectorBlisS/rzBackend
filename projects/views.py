@@ -72,6 +72,7 @@ class UpdatesViewSet(viewsets.ModelViewSet):
     serializer_class = UpdateSerializer
 
 
+
 class UserUpdates(ListAPIView):
     queryset = Updates.objects.all()
     serializer_class = UpdateSerializer
