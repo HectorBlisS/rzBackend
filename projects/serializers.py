@@ -23,7 +23,7 @@ class ObservationSerializer(serializers.ModelSerializer):
 class ProjectTwoSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Project
-		fields = ['name', 'id', 'photoURL']
+		fields = [ 'id']
 
 # class FollowSerializer(serializers.ModelSerializer):
 # 	user=UserSerializer(many=True, read_only=True)
@@ -34,12 +34,19 @@ class ProjectTwoSerializer(serializers.ModelSerializer):
 
 
 class UpdateSerializer(serializers.ModelSerializer):
-	updates = ProjectTwoSerializer(read_only=True)
+	
 	class Meta:
 		model = Updates
 		fields = '__all__'
+		depth=1
 
-
+class PostUpdateSerializer(serializers.ModelSerializer):
+	
+	class Meta:
+		model = Updates
+		fields = '__all__'
+		
+		
 
 class ProjectSerializer(serializers.ModelSerializer):
 	rewards = RewardSerializer(many=True, read_only=True)

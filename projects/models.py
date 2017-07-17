@@ -87,8 +87,8 @@ class Observaciones(models.Model):
 		return "observation of {}".format(self.project)
 
 class Updates(models.Model):
-	project = models.ForeignKey(Project, related_name='updates')
-	author = models.ForeignKey(User, related_name='updater')
+	project = models.ForeignKey(Project, related_name='updates', null=True)
+	author = models.ForeignKey(User, related_name='updater', null=True)
 	update = models.CharField(max_length=140, null=True, blank=True)
 	image = models.URLField(max_length=1000, null=True, blank=True)
 	date = models.DateTimeField(auto_now_add=True, db_index=True, null=True, blank=True)

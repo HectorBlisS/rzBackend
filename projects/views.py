@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework import viewsets
-from .serializers import ProjectSerializer, RewardSerializer, ObservationSerializer, UpdateSerializer
+from .serializers import ProjectSerializer, RewardSerializer, ObservationSerializer, UpdateSerializer, PostUpdateSerializer
 from .models import Project, Reward, Observaciones, Updates, Follow
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, RetrieveAPIView
 from rest_framework.pagination import (PageNumberPagination, LimitOffsetPagination,)
 from django.contrib.auth.models import User
+
+from rest_framework.decorators import detail_route, list_route
 
 class OwnerMixin(object):
     def get_queryset(self):
@@ -69,8 +71,7 @@ class ObservationsViewSet(viewsets.ModelViewSet):
 
 class UpdatesViewSet(viewsets.ModelViewSet):
     queryset = Updates.objects.all()
-    serializer_class = UpdateSerializer
-
+    serializer_class = PostUpdateSerializer
 
 
 class UserUpdates(ListAPIView):
@@ -98,9 +99,9 @@ from rest_framework.decorators import api_view
 @api_view(['POST'])
 def follow_project(request):
     project=Project.objects.get(id=request.data)
-    #user=request.user
-    print(request.user)
-    user=User.objects.all()[1]
+    user=User.objects.get(id=request.user.id)
+    
+    #user=User.objects.all()[1]
     #Follow.objects.get_or_create(user_from=user,project=project)
     Follow.objects.get_or_create(user_from=user,project=project)
     return Response({"message": "Following project", "data": request.data, "user":request.user.id})
