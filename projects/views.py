@@ -89,32 +89,21 @@ class UserUpdates(ListAPIView):
         qs = super(UserUpdates, self).get_queryset()
         return qs.filter(project__in=projects)
 
-from django.http import JsonResponse
-from django.views.decorators.http import require_POST
-from .models import Follow
-from django.contrib.auth.decorators import login_required 
+
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
-
-@require_POST
-@login_required
 @csrf_exempt
-def follow_project(request, project):
-    user_id = request.POST.get('id')
-    action = request.POST.get('action')
-    if user_id and action:
-        try:
-            user = User.objects.get(id=user_id)
-            if action == 'follow':
-                Follow.objects.get_or_create(user_from=request.user,
-                    project=project)
-            else:
-                Follow.objects.filter(user_from=request.user,
-                    project=project).delete()
-            return JsonResponse({'status':'siguiendo el proyecto'})
-        except User.DoesNotExist:
-            return JsonResponse({'status':'error bro'})
-    return JsonResponse({'status':'ko'})
+@api_view(['POST'])
+def follow_project(request):
+    project=Project.objects.get(id=request.data)
+    #user=request.user
+    print(request.user)
+    user=User.objects.all()[1]
+    #Follow.objects.get_or_create(user_from=user,project=project)
+    Follow.objects.get_or_create(user_from=user,project=project)
+    return Response({"message": "Following project", "data": request.data, "user":request.user.id})
 
 
 

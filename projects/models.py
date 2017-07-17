@@ -91,6 +91,7 @@ class Updates(models.Model):
 	author = models.ForeignKey(User, related_name='updater')
 	update = models.CharField(max_length=140, null=True, blank=True)
 	image = models.URLField(max_length=1000, null=True, blank=True)
+	date = models.DateTimeField(auto_now_add=True, db_index=True, null=True, blank=True)
 
 	def __str__(self):
 		return "update of {}".format(self.project)
