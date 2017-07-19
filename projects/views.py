@@ -98,10 +98,10 @@ from rest_framework.decorators import api_view
 @csrf_exempt
 @api_view(['POST'])
 def follow_project(request):
-    #project=Project.objects.get(id=request.data)
-    #user=User.objects.get(id=request.user.id)
-    project=Project.objects.get(id=1)
-    user=User.objects.all()[1]
+    project=Project.objects.get(id=request.data)
+    user=User.objects.get(id=request.user.id)
+    #project=Project.objects.get(id=1)
+    #user=User.objects.all()[1]
     #Follow.objects.get_or_create(user_from=user,project=project)
     follow, created=Follow.objects.get_or_create(user_from=user,project=project)
     if created==False:
