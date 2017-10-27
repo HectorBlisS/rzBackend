@@ -3,9 +3,13 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from projects.models import Reward, Project
+
+from .models import Donacion
+
 import conekta
 conekta.api_key = "key_sqCLgHarDSoaR2PWKsTZoA"
 conekta.api_version = "2.0.0"
+conekta.locale = 'es'
 
 
 class ExecutePay(APIView):
@@ -15,18 +19,22 @@ class ExecutePay(APIView):
 
 		#sacamos los datos del diccionario
 		data = request.data
+		amount = 0
 		print(data)
 		rewardId = data['rewardId']
 		if rewardId:
 		# si si llega reward, sacas los datos y montos
 			reward = get_object_or_404(Reward, pk=rewardId)
+			amount = int(reward.amount) * 100
 			print(reward)
+			project = reward.project
 		else:
 		# si no  llega reward, cobras libre *****
 			print('llego falso', rewardId)
-			amount = data['amount']
+			amount = int(data['amount']) * 100
 		# reconocemos al usuario
 		user = request.user
+
 		# si id en profile buscamos al cliente en conekta
 		if user.profile.conekta:
 			try:
@@ -52,12 +60,13 @@ class ExecutePay(APIView):
 		
 
 		# creamos la orden y llenamos datos
+		donacion = Donacion.objects.create(donador=user,proyecto=project, recompensa=reward, monto=amount/100)
 		try:
 			order = conekta.Order.create({
 		      "line_items": [{
-		          "name": "Tacos",
-		          "unit_price": 1000,
-		          "quantity": 12
+		          "name": reward.title,
+		          "unit_price": amount,
+		          "quantity": 1
 		      }],
 		      # "shipping_lines": [{
 		      #     "amount": 1500,
@@ -79,22 +88,36 @@ class ExecutePay(APIView):
 		     #     "residential": True
 		     #   }
 		     # },
-		    "metadata": { "description": "Compra de creditos: 300(MXN)", "reference": "1334523452345" },
+		    "metadata": { 
+		    	"description": reward.description, 
+		    	"reference": reward.id 
+		    	},
 		    "charges":[{
 		      "payment_method": {
 		        "type": "default"
 		      }
 		    }]
 		  })
+			
+			donacion.pagado = True
 		except conekta.ConektaError as e:
 			order = {"payment_status":"Falló"}
 			print(order)
 			print (e)
 
 		# cobramos
+		# ya lo cobra la orden:
 
 		# exito: guardamos el input en base de datos y el id del cliente en profile
 		# error: respondemos con la respuesta de conekta
 
+		#guardamos donacion
+		# creamos el objeto Donacion
+		donacion.conekta = order.charges[0].id
+		#print("code?",order.charges[0].id)
+			# fin creamos donacion
+		donacion.save()
+
 		# respondemos 
+
 		return Response(order['payment_status'])
