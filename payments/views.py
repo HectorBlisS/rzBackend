@@ -3,13 +3,38 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from projects.models import Reward, Project
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Donacion
+from .serializers import DonacionSerializer
 
 import conekta
 conekta.api_key = "key_sqCLgHarDSoaR2PWKsTZoA"
 conekta.api_version = "2.0.0"
 conekta.locale = 'es'
+
+class OwnerMixin(object):
+	def get_queryset(self):
+		proyectoId = self.request.GET.get("proyectoId")
+		print("entero? ", proyectoId)
+		#print("mixin: ", bool(propias) )
+		qs = super(OwnerMixin, self).get_queryset()
+# print(self.request.user.is_staff)
+		if self.request.user.is_staff and proyectoId:
+			proyecto = get_object_or_404(Project, id=proyectoId)
+			return qs.filter(proyecto=proyecto)
+		elif self.request.user.is_staff:
+			return qs
+		elif proyectoId:
+			print("toy aqui:", proyectoId)
+			proyecto = get_object_or_404(Project, id=proyectoId, author=self.request.user)
+			return qs.filter(proyecto=proyecto)
+		return qs.filter(donador=self.request.user)
+
+class DonacionViewSet(OwnerMixin, ModelViewSet):
+	queryset = Donacion.objects.all()
+	serializer_class = DonacionSerializer
+	permission_classes = (permissions.IsAuthenticated,)
 
 
 class ExecutePay(APIView):
