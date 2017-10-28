@@ -20,6 +20,7 @@ class Donacion(models.Model):
 	fecha = models.DateTimeField(auto_now=True)
 	pagado = models.BooleanField(default=False)
 	conekta = models.CharField(max_length=140, blank=True, null=True)
+	extra = models.CharField(max_length=1, blank=True, null=True)
 
 	def __str__(self):
 		return "{} dono a {} adquiriendo {}".format(self.donador, self.proyecto, self.recompensa)
