@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Donacion
-from projects.serializers import ProjectSerializer
+from projects.serializers import ProjectSerializer, RewardSerializer
 from accounts.serializers import UserSerializer
 
 
