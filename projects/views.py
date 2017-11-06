@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework import viewsets
-from .serializers import ProjectSerializer, RewardSerializer, ObservationSerializer, UpdateSerializer, PostUpdateSerializer
+from .serializers import ProjectSerializer, RewardSerializer, ObservationSerializer, UpdateSerializer, PostUpdateSerializer, FollowSerializer
 from .models import Project, Reward, Observaciones, Updates, Follow
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, RetrieveAPIView
 from rest_framework.pagination import (PageNumberPagination, LimitOffsetPagination,)
@@ -110,6 +110,16 @@ def follow_project(request):
     #return Response({"message": "Following project", "data": request.data, "user":request.user.id})
     return Response({'follow':request.data, 'created':created})
 
+
+
+
+class FollowedProjects(ListAPIView):
+    queryset = Follow.objects.all()
+    serializer_class = FollowSerializer
+    def get_queryset(self):
+        user = self.request.user
+        qs = super(FollowedProjects, self).get_queryset()
+        return qs.filter(user_from=user)
 
 
 

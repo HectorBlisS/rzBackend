@@ -10,8 +10,8 @@ from rest_framework import routers
 from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet, UserViewSet, GetMyProfile
 
-from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet, UpdatesViewSet, UserUpdates, follow_project
-from payments.views import ExecutePay
+from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet, UpdatesViewSet, UserUpdates, follow_project, FollowedProjects
+from payments.views import ExecutePay, DonacionViewSet
 
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet)
@@ -20,6 +20,7 @@ router.register(r'rewards', RewardViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'observations', ObservationsViewSet)
 router.register(r'updates', UpdatesViewSet)
+router.register(r'donaciones',DonacionViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -34,6 +35,7 @@ urlpatterns = [
 
     url(r'^userprojects/(?P<pk>\d+)/$', UserProjects.as_view()),
     url(r'^userupdates/$', UserUpdates.as_view()),
+    url(r'^followedprojects/$', FollowedProjects.as_view()),
     url(r'^pay/$', ExecutePay.as_view() ),
     url(r'^follow/$', follow_project),
 
