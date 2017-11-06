@@ -10,11 +10,9 @@ from rest_framework import routers
 from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet, UserViewSet, GetMyProfile
 
-<<<<<<< HEAD
+
 from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet, UpdatesViewSet, UserUpdates, follow_project, FollowedProjects
-=======
-from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet, UpdatesViewSet, UserUpdates, follow_project
->>>>>>> fe8dee08bb18d87b9bcf942982d566af38020233
+
 from payments.views import ExecutePay, DonacionViewSet
 
 router = routers.DefaultRouter()
