@@ -37,7 +37,7 @@ class PaginatedListView(ListAPIView):
 
     def get_queryset(self):
         qs = super(PaginatedListView, self).get_queryset()
-        if(self.request.user.is_staff):
+        if self.request.user.is_staff:
             return qs
         return qs.filter(validated=True)
 
