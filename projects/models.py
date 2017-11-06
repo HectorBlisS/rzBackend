@@ -40,6 +40,7 @@ class Project(models.Model):
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
 	category = models.ManyToManyField(Category, related_name='projects')
 	summary = models.CharField(max_length=140, 	blank=True, null=True)
+	destacado = models.BooleanField(default=False)
 
 
 	def __str__(self):
