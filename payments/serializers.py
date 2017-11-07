@@ -12,3 +12,4 @@ class DonacionSerializer(ModelSerializer):
 	class Meta:
 		model = Donacion
 		fields = "__all__"
+

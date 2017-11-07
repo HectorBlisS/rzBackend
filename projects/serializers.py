@@ -1,12 +1,19 @@
 from rest_framework import serializers
 from .models import Project, Reward, Category, Observaciones, Updates, Follow
 from accounts.serializers import UserSerializer
+from payments.models import Donacion
+
 
 
 
 class CategorySerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Category
+		fields = '__all__'
+
+class DonacionSerializer2(serializers.ModelSerializer):
+	class Meta:
+		model = Donacion
 		fields = '__all__'
 
 
@@ -52,9 +59,11 @@ class ProjectSerializer(serializers.ModelSerializer):
 	rewards = RewardSerializer(many=True, read_only=True)
 	observation = ObservationSerializer(many=True, read_only=True)
 	#followers = FollowSerializer(many=True, read_only=True)
+	donaciones = DonacionSerializer2(many=True, read_only=True)
 	updates = UpdateSerializer(many=True, read_only=True)
 	category = CategorySerializer(read_only=True, many=True)
 	author = UserSerializer(read_only=True, default=serializers.CurrentUserDefault())
+	
 	class Meta:
 		model = Project
 		fields = '__all__'
