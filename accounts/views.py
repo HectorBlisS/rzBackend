@@ -46,6 +46,10 @@ class GetMyProfile(APIView):
 		if request.data['uid']:
 			profile.uid = request.data['uid']
 			profile.save()
+
+		if request.data['provider_uid']
+			profile.provider_uid = request.data['provider_uid']
+			profile.save()
 		
 
 		serializer = UserSerializer(request.user)
