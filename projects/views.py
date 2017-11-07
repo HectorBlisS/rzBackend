@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework import viewsets
-from .serializers import ProjectSerializer, RewardSerializer, ObservationSerializer, UpdateSerializer, PostUpdateSerializer, FollowSerializer
-from .models import Project, Reward, Observaciones, Updates, Follow
+from .serializers import ProjectSerializer, RewardSerializer, ObservationSerializer, UpdateSerializer, PostUpdateSerializer, FollowSerializer, CategorySerializer
+from .models import Project, Reward, Observaciones, Updates, Follow, Category
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, RetrieveAPIView
 from rest_framework.pagination import (PageNumberPagination, LimitOffsetPagination,)
 from django.contrib.auth.models import User
@@ -123,6 +123,10 @@ class FollowedProjects(ListAPIView):
         user = self.request.user
         qs = super(FollowedProjects, self).get_queryset()
         return qs.filter(user_from=user)
+
+class CategoryList(ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 
 
