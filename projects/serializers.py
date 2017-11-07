@@ -53,7 +53,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 	observation = ObservationSerializer(many=True, read_only=True)
 	#followers = FollowSerializer(many=True, read_only=True)
 	updates = UpdateSerializer(many=True, read_only=True)
-	category = CategorySerializer(read_only=True, many=True)
+	# category = CategorySerializer(read_only=True, many=True)
 	author = UserSerializer(read_only=True, default=serializers.CurrentUserDefault())
 	class Meta:
 		model = Project
