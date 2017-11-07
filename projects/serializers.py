@@ -70,7 +70,8 @@ class ProjectSerializer(serializers.ModelSerializer):
 		lookup_field = 'slug'
 
 	def create(self, validated_data):
-		c = Category.objects.all().filter(slug='salud')
+		# c = Category.objects.all().filter(slug='salud')
+		c = [1]
 		p = Project.objects.create(**validated_data)
 		p.category = c
 		p.save()
