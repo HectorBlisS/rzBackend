@@ -47,7 +47,7 @@ class GetMyProfile(APIView):
 			profile.uid = request.data['uid']
 			profile.save()
 
-		if request.data['provider_uid']
+		if request.data['provider_uid']:
 			profile.provider_uid = request.data['provider_uid']
 			profile.save()
 		
