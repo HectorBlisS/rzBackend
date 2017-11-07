@@ -11,16 +11,7 @@ from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet, UserViewSet, GetMyProfile
 
 
-from projects.views import RewardViewSet, 
-DetailProjectView, 
-PreviewDetailProjectView, 
-UserProjects, 
-ObservationsViewSet, 
-UpdatesViewSet, 
-UserUpdates, 
-follow_project, 
-FollowedProjects, 
-CategoryList
+from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet, UpdatesViewSet, UserUpdates, follow_project, FollowedProjects, CategoryList
 
 from payments.views import ExecutePay, DonacionViewSet
 
