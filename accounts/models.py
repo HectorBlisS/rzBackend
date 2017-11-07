@@ -9,7 +9,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, blank=True, null=True)
     photoURL = models.URLField(blank=True, null=True)
     uid = models.CharField(blank=True, null=True, max_length=140)
-
+    provider_uid = models.CharField(max_length=200, blank=True, null=True)
     edad = models.IntegerField(blank=True, null=True)
     calle = models.CharField(max_length=100, blank=True, null=True)
     numero = models.CharField(max_length=140,blank=True, null=True)
