@@ -22,8 +22,7 @@ router.register(r'rewards', RewardViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'observations', ObservationsViewSet)
 router.register(r'updates', UpdatesViewSet)
-router.register(r'donaciones',DonacionViewSet)
-router.register(r'categorias', CategoryList)
+router.register(r'donaciones', DonacionViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -41,6 +40,7 @@ urlpatterns = [
     url(r'^followedprojects/$', FollowedProjects.as_view()),
     url(r'^pay/$', ExecutePay.as_view() ),
     url(r'^follow/$', follow_project),
+    url(r'^categorias/$', CategoryList.as_view()),
 
 
     
