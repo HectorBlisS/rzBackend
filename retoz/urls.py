@@ -11,7 +11,7 @@ from projects.views import ProjectViewSet, PaginatedListView
 from accounts.views import ProfileViewSet, UserViewSet, GetMyProfile
 
 
-from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet, UpdatesViewSet, UserUpdates, follow_project, FollowedProjects, CategoryList
+from projects.views import RewardViewSet, DetailProjectView, PreviewDetailProjectView, UserProjects, ObservationsViewSet, UpdatesViewSet, UserUpdates, follow_project, FollowedProjects, CategoryList, MobileProjectViewSet
 
 from payments.views import ExecutePay, DonacionViewSet
 
@@ -23,6 +23,7 @@ router.register(r'users', UserViewSet)
 router.register(r'observations', ObservationsViewSet)
 router.register(r'updates', UpdatesViewSet)
 router.register(r'donaciones', DonacionViewSet)
+router.register(r'mobileprojects', MobileProjectViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

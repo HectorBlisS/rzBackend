@@ -22,6 +22,10 @@ class ProjectViewSet(OwnerMixin, viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
     # lookup_field = 'slug'
 
+class MobileProjectViewSet(viewsets.ModelViewSet):
+    queryset = Project.objects.all().filter(validated=True)
+    serializer_class = ProjectSerializer
+
 
 class RewardViewSet(viewsets.ModelViewSet):
     queryset = Reward.objects.all()
