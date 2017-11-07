@@ -61,7 +61,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 	#followers = FollowSerializer(many=True, read_only=True)
 	donaciones = DonacionSerializer2(many=True, read_only=True)
 	updates = UpdateSerializer(many=True, read_only=True)
-	#category = CategorySerializer(read_only=True, many=True)
+	# category = CategorySerializer(read_only=True, many=True)
 	author = UserSerializer(read_only=True, default=serializers.CurrentUserDefault())
 	
 	class Meta:
@@ -70,8 +70,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 		lookup_field = 'slug'
 
 	def create(self, validated_data):
-		# c = Category.objects.all().filter(slug='salud')
-		c = [1]
+		c = Category.objects.all().filter(slug='salud')
 		p = Project.objects.create(**validated_data)
 		p.category = c
 		p.save()
