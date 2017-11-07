@@ -38,7 +38,7 @@ class Project(models.Model):
 	followers = models.ManyToManyField(User, through="Follow", blank=True, symmetrical=False)
 	validated = models.BooleanField(default=False)
 	status = models.CharField(max_length=140, default="editing", choices=STATUSCHOICES)
-	category = models.ManyToManyField(Category, related_name='projects')
+	category = models.ManyToManyField(Category, related_name='projects', null=True, blank=True)
 	summary = models.CharField(max_length=140, 	blank=True, null=True)
 	destacado = models.BooleanField(default=False)
 
