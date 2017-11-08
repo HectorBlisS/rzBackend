@@ -25,7 +25,7 @@ class ProjectViewSet(OwnerMixin, viewsets.ModelViewSet):
 class MobileProjectViewSet(viewsets.ModelViewSet):
     queryset = Project.objects.all().filter(validated=True)
     serializer_class = ProjectSerializer
-    permission_classes = permissions.IsAuthenticatedOrReadOnly
+    # permission_classes = permissions.IsAuthenticatedOrReadOnly
 
 
 
