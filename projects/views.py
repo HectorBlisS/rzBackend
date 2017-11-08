@@ -66,7 +66,7 @@ class PreviewDetailProjectView(RetrieveAPIView):
 class UserProjects(ListAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = permissions.IsAuthenticatedOrReadOnly
+    # permission_classes = permissions.IsAuthenticatedOrReadOnly
 
     def get_queryset(self):
 
@@ -88,7 +88,7 @@ class UserUpdates(ListAPIView):
     queryset = Updates.objects.all()
     serializer_class = UpdateSerializer
     pagination_class = LimitOffsetPagination
-    permission_classes = permissions.IsAuthenticatedOrReadOnly
+    # permission_classes = permissions.IsAuthenticatedOrReadOnly
 
 
     def get_queryset(self):
@@ -128,7 +128,7 @@ def follow_project(request):
 class FollowedProjects(ListAPIView):
     queryset = Follow.objects.all()
     serializer_class = FollowSerializer
-    permission_classes = permissions.IsAuthenticatedOrReadOnly
+    # permission_classes = permissions.IsAuthenticatedOrReadOnly
     def get_queryset(self):
         user = self.request.user
         qs = super(FollowedProjects, self).get_queryset()
