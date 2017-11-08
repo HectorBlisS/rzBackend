@@ -26,7 +26,7 @@ class OwnerMixin(object):
 		elif self.request.user.is_staff:
 			return qs
 		elif proyectoId:
-			print("toy aqui:", proyectoId)
+			# print("toy aqui:", proyectoId)
 			proyecto = get_object_or_404(Project, id=proyectoId, author=self.request.user)
 			return qs.filter(proyecto=proyecto)
 		return qs.filter(donador=self.request.user)
