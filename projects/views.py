@@ -76,7 +76,7 @@ class ObservationsViewSet(viewsets.ModelViewSet):
     queryset = Observaciones.objects.all()
     serializer_class = ObservationSerializer
 
-class UpdatesViewSet(viewsets.ModelViewSet):
+class UpdatesViewSet(OwnerMixin, viewsets.ModelViewSet):
     queryset = Updates.objects.all()
     serializer_class = PostUpdateSerializer
 
