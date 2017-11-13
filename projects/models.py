@@ -90,7 +90,7 @@ class Observaciones(models.Model):
 class Updates(models.Model):
 	project = models.ForeignKey(Project, related_name='updates', null=True)
 	author = models.ForeignKey(User, related_name='updater', null=True)
-	update = models.CharField(max_length=140, null=True, blank=True)
+	update = models.TextField(null=True, blank=True)
 	image = models.URLField(max_length=1000, null=True, blank=True)
 	date = models.DateTimeField(auto_now_add=True, db_index=True, null=True, blank=True)
 
