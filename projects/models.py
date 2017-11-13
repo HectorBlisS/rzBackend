@@ -69,7 +69,7 @@ class Follow(models.Model):
 class Reward(models.Model):
 	project = models.ForeignKey(Project, related_name='rewards')
 	title = models.CharField(max_length=140)
-	description = models.CharField(max_length=240)
+	description = models.TextField()
 	amount = models.DecimalField(decimal_places=2, max_digits=8)
 	date = models.DateField(blank=True, null=True)
 	quantity = models.IntegerField(blank=True, null=True)
