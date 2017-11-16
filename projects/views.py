@@ -111,12 +111,12 @@ from rest_framework.decorators import api_view
 @api_view(['POST'])
 def follow_project(request):
     project=Project.objects.get(id=request.data)
-    user=User.objects.get(id=request.user.id)
+    user=request.user
     #project=Project.objects.get(id=1)
     #user=User.objects.all()[1]
     #Follow.objects.get_or_create(user_from=user,project=project)
     follow, created=Follow.objects.get_or_create(user_from=user,project=project)
-    if created==False:
+    if not created:
         Follow.objects.get(id=follow.id).delete()
 
     #return Response({"message": "Following project", "data": request.data, "user":request.user.id})
