@@ -15,7 +15,7 @@ django-rest-framework-social-oauth2==1.0.5
 django-toolkit==0.3.3
 djangorestframework==3.6.3
 gunicorn==19.7.1
-httplib2==0.10.3
+httplib2==0.18.0
 idna==2.5
 lxml==3.4.4
 nose==1.3.7
